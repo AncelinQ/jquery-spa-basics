@@ -1,3 +1,18 @@
-<form action="/logout.php" method="POST">
+<form action="/logout.php" method="POST" id='logout-form'>
     <input type="submit"  name="logout" value="Deconnexion">
 </form>
+<script>
+    $('#logout-form').submit(function(event){
+        event.preventDefault();
+        
+    
+
+    $.post($(this).attr('action'), [{name: 'logout', value: 'Déconnexion'}]).then(function(response){
+        respone = JSON.parse(response);
+
+        if(response.success){
+            $('nav .logout').html('');
+        };
+    })
+})
+</script>

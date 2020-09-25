@@ -9,5 +9,22 @@
         <input class="form-control" type="password" id="password" name="password">
     </div>
 
-    <input type="submit" class="btn btn-success">
+    <input id="loginBtn" type="submit" class="btn btn-success">
 </form>
+<script>
+    function login(e) {
+        e.preventDefault();
+console.log('tuoi');
+        let data = $(this).serializeArray();
+
+        $.post($(this).attr('action'), data).then(function (response) {
+            response = JSON.parse(response);
+            if (response.error) {
+                $('.alert').html(response.error);
+                return;
+            }
+            window.location.hash = '#homepage';
+        })
+    }
+    $('#login-form').submit(login);
+</script>

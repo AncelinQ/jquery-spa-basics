@@ -8,9 +8,9 @@ session_start();
 
 /** Si l'utilisateur est déjà connecté, retourne l'utilisateur connecté. */
 if (isset($_SESSION['security'])) {
-    echo json_encode($_SESSION['security']);
-
-    exit;
+    echo json_encode([
+        'user' => $_SESSION['security']
+    ]);
 }
 
 /** @info Si l'email ou le mdp n'est pas renseigné retourne une erreur. */
@@ -26,7 +26,7 @@ $data = file_get_contents(__DIR__ . '/data/user.json');
 $data = json_decode($data, true);
 
 $emails = [];
-foreach($data as $datum) {
+foreach ($data as $datum) {
     $emails[] = $datum['email'];
 }
 
@@ -57,5 +57,3 @@ echo json_encode([
     'user' => $_SESSION['security']
 ]);
 exit;
-
-

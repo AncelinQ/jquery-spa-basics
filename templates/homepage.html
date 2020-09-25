@@ -1,12 +1,21 @@
 <div class="jumbotron">
     <!-- afficher ici si l'utilisateur est connecté :
-        <h2>Hi {{ First name }}</h2>
     -->
+    <h2>Hi {{ data.firstName }}</h2>
+    <!---->
     <h3>Welcome to my awesome website</h3>
 </div>
 
 <div class="panel">
     <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi omnis deleniti hic quibusdam modi. Ipsum odio unde amet a, enim necessitatibus iste. Numquam harum in deserunt tempora iusto, impedit cum!
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi omnis deleniti hic quibusdam modi. Ipsum odio
+        unde amet a, enim necessitatibus iste. Numquam harum in deserunt tempora iusto, impedit cum!
     </p>
 </div>
+<script>
+    if (MON_SUPER_SITE.security) {
+        $('.jumbotron').prepend(
+            `<h2>Hi ${MON_SUPER_SITE.security.name}</h2>`;
+        )
+    }
+</script>
